@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{%block heading %}decrypter{% endblock heading %}
+
+{% block content %}
+
+<div class="flex flex-col items-center justify-center">
+    <h1 class="text-lg font-semibold text-center text-gray-300 mt-10 mb-12">Decrypt Files Here</h1>
+
+    <div class="place-items-center">
+        
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_encrypted_file" class="block text-gray-400 mb-2 font-medium">Encrypted File</label>
+                {{ form.encrypted_file }}
+            </div>
+
+            <div class="mb-4">
+                <label for="id_key_file" class="block text-gray-400 mb-2 font-medium">Key File</label>
+                {{ form.key_file }}
+            </div>
+            <button class="w-full mt-10 bg-blue-500 text-white py-2 rounded" type="submit">Decrypt</button>
+        </form>
+
+        {% if decrypted_data %}
+            <p class="mt-10">File decrypted successfully! <a href="{{ decrypted_file_url }}">Download the decrypted file</a></p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

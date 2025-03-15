@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block heading %} Signup {% endblock heading %}
+
+{% block content %}
+
+<form class="w-2xl sm:w-1/2 max-w-xs flex flex-col mx-auto -mt-8 sm:-mt-12" action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    <div class="w-1/2 max-w-xs flex flex-col sm:flex-row mt-10 sm:items-center"></div>
+    
+    <label class="text-xl" for="firstname">Firstname</label>
+    
+    <input class="px-2 py-1 bg-transparent border-white border-2 h-lg mt-2 rounded " name="firstname" type="text"
+        placeholder="firstname" />
+    </div>
+
+    <div class="w-1/2 max-w-xs flex flex-col sm:flex-row mt-4 sm:items-center"></div>
+    <label class="text-xl" for="lastname">Lastname</label>
+    
+    <input class="px-2 py-1 bg-transparent border-white border-2 mt-2  rounded " name="lastname" type="text"
+        placeholder="lastname" />
+    </div>
+    
+    <div class="w-1/2  max-w-xs flex flex-col sm:flex-row mt-4  sm:items-center"></div>
+    <label class="text-xl" for="Email">Email</label>
+
+    <input class="px-2 py-1 bg-transparent border-white border-2 h-lg mt-2 rounded " name="email" type="email"
+        id="email" placeholder="email" />
+    <p id="studentID-error" class="hidden text-red-400 py-1">ID either incomplete or exists</p>
+    </div>
+    </div>
+    
+    <div class="w-1/2 max-w-xs flex flex-col sm:flex-row mt-4 sm:items-center"></div>
+    
+    <label class="text-xl" for="password">Password</label>
+    <input class="px-2 py-1 bg-transparent border-white border-2 mt-2  rounded " name="password" type="password"
+        placeholder="password" />
+    </div>
+
+    <button class="text-white hover:shadow-md text-xl rounded bg-green-500 px-4 py-2 mt-8 "
+        type="submit">Submit</button>
+
+</form>
+
+<div
+    class="container md:mx-auto max-w-5xl mt-16 p-3 flex sm:flex-row flex-col items-center justify-center sm:justify-between">
+    <p class="text-sm text-gray-500">* making an account helps keep track of previously encrypted files</p>
+</div>
+
+<script>
+    const users = "{{users | escapejs}}";
+    const idField = document.querySelector('#email');
+    const idError = document.querySelector('#email-error');
+    idField.addEventListener('input', () => {
+        idError.classList.add('hidden')
+        if (users.includes(idField.value)) {
+            idError.classList.remove('hidden')
+        }
+    })
+</script>
+
+{% endblock content %}

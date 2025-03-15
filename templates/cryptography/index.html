@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-md mx-auto mt-16 p-8 rounded-m">
+    <div class="text-center mb-20">
+        <h1 class="text-3xl font-bold text-white-800">Welcome!</h1>
+        <h3 class="text-lg text-gray-500 mt-3">encrypt and decrypt your files here</h3>
+    </div>
+
+    <div class="flex space-x-10 justify-center"> <!-- Horizontal layout with space between the buttons -->
+        <a href="{% url 'encrypter' %}" class="block w-80"> 
+            <button class="py-3 text-white font-semibold rounded w-full border-2 border-green-500">
+                Encrypt Files
+            </button>
+        </a>
+        <a href="{% url 'decrypter' %}" class="block w-80">
+            <button class="py-3 text-white font-semibold rounded w-full border-2 border-green-500">
+                Decrypt Files
+            </button>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}
